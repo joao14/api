@@ -5,7 +5,7 @@ const app = express();
 let server;
 
 app.get('/', (req, res) => {
-  res.send('Api Rest');
+  res.send('Api Rest Express');
 });
 
 app.get('/health-check', (req, res) => {
