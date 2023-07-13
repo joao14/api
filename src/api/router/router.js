@@ -1,13 +1,7 @@
 const router = require('express').Router();
-const { handleApiError, handleNotFound } = require('../middleware');
 
 // Delegate request to sub-routers
-router.use('/auth', require('../components/auth/authRouter'));
+router.use('/files', require('../components/file/fileRouter'));
 
-// Catch not-found requests
-router.use(handleNotFound);
-
-// Handle api errors
-router.use(handleApiError);
 
 module.exports = router;
