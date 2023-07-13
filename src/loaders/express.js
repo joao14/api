@@ -6,8 +6,6 @@ const { corsOptions } = require('../services/auth/cors');
 
 
 module.exports = ({ app }) => {
- 
-  app.disable('x-powered-by');
 
   app.use(compression());
   app.use(express.json());

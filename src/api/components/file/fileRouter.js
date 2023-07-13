@@ -4,6 +4,6 @@ const {
   files,
 } = require('./fileController');
 
-router.get('/', files);
+router.get('/data', files);
 
 module.exports = router;
