@@ -7,7 +7,7 @@ Create api to backend
     -   NODE_ENV=development
     -   URL_FILES="https://echo-serv.tbxnet.com/v1/secret/files"
     -   URL_FILE="https://echo-serv.tbxnet.com/v1/secret/file/"
-    -   SECRET_KEY=${--put secret of the private swagger withouth Bearer --}
+    -   SECRET_KEY= --put secret of the private swagger withouth Bearer --
 
 2. To run the proyect please execute the next commands:
     -   npm start 
