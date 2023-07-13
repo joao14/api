@@ -1,10 +1,36 @@
-const assert = require('chai').assert
-//const file = require('../api/components/file')
+const server = require('../app')
+const chai = require('chai')
+const expect = require('chai').expect
+const chaiHttp = require('chai-http')
 
-//Resultados
+chai.should()
 
-describe('File suite', function () {
-    it('Download', function () {
-        assert.equal("2", "2")
+chai.use(chaiHttp)
+
+describe('Files suites', () => {
+
+    /**Test the GET route */
+    describe('GET /files/data', () => {
+        it('It should GET all the data', (done) => {
+            chai.request(server).get("/files/data").end((err, response) => {
+                response.should.have.status(200)
+                response.body.should.be.a('array')
+                response.body.length.should.be.eq(3)
+                response.body.forEach((file) => {
+                    file.lines.forEach(line => {
+                        line.should.have.property("text")
+                        line.should.have.property("number")
+                        line.should.have.property("hex")
+                        expect(line.text).to.be.a('string')
+                        expect(+line.number).to.be.a('number')
+                        expect(line.hex).to.have.length(32)
+                    });
+                });
+                done();
+            })
+        })
+
     })
+
+
 })

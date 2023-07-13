@@ -10,11 +10,10 @@ exports.getAllInformationOfFiles = async () => {
 
   await data.files.reduce(async (previousPromise, element) => {
     await previousPromise;
-    const data_file = await FileHelper.callExternalApi(file + "" + element)
+    const reponse = await FileHelper.callExternalApi(file + "" + element)
+    if (reponse && reponse != 500 && reponse != 404) {
 
-    if (data_file) {
-
-      let row = data_file.split("\n")
+      let row = reponse.split("\n")
 
       let lines = []
       for (i = 1; i < row.length; i++) {
@@ -29,11 +28,11 @@ exports.getAllInformationOfFiles = async () => {
             "hex": columns[3],
           })
       }
-
-      allFiles.push({
-        "file": element,
-        "lines": lines
-      })
+      if (lines.length > 0)
+        allFiles.push({
+          "file": element,
+          "lines": lines
+        })
     }
 
     return Promise.resolve();

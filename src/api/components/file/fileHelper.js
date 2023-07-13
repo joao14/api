@@ -7,12 +7,7 @@ exports.callExternalApi = async (url) => {
       return response.data
     })
     .catch(function (err) {
-      if (err.response.status == 500) {
-        console.log("Error de descarga de archivo")
-      }
-      if (err.response.status == 400) {
-        console.log("Se encunetra problemas en el servidor")
-      }
+      return err.response.status
     })
 
   return data
