@@ -17,3 +17,12 @@ Create api to backend
 
     -   docker build -t api:latest .
     -   docker run -p 8080:8080 api:latest
+
+
+# Example API REST:
+
+1. GET -> http://localhost:8080/api/v1/files/data
+
+2. GET -> http://localhost:8080/api/v1/files/data?fileName=test1.csv
+
+3. GET -> http://localhost:8080/api/v1/files/list

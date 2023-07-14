@@ -1,10 +1,16 @@
 const { BadRequestError } = require('../../../utils/errors/httpErrors');
-const { files, file, secret } = require('../../../config')
+const { files, file } = require('../../../config')
 const { FileHelper } = require('.');
 
-exports.getAllInformationOfFiles = async () => {
+exports.getAllInformationOfFiles = async (fileName) => {
 
   const data = await FileHelper.callExternalApi(files)
+
+
+  if (fileName) {
+    const findFile = data.files.find(file => file == fileName)
+    if (!findFile) throw new BadRequestError('File no exists in the service');
+  }
 
   let allFiles = []
 
@@ -38,6 +44,13 @@ exports.getAllInformationOfFiles = async () => {
     return Promise.resolve();
   }, Promise.resolve());
 
-  return allFiles
+  return fileName ? allFiles.find(file => file.file == fileName) : allFiles
+};
+
+
+exports.getFiles = async () => {
+
+  return await FileHelper.callExternalApi(files)
+
 };
 
